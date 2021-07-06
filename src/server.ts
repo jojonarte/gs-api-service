@@ -1,28 +1,15 @@
 import * as dotenv from 'dotenv';
 import 'module-alias/register';
+import Application from 'src/app';
+import { logger } from './utils/logger';
 
 dotenv.config();
-import app from 'src/app';
-
-const PORT = process.env.PORT || 3002;
 
 const initialize = async () => {
-  const server = app
-    .listen(PORT, async () => {
-      // tslint:disable-next-line: no-console
-      console.log(`API Server listening on port: ${PORT}`);
-    })
-    .on('error', (err: Error) => {
-      // tslint:disable-next-line: no-console
-      console.error(err);
-    });
-
-  return server;
+  const appInstance = new Application()
+  appInstance.start().catch(Application.fatal);
 };
 
-const server = initialize().catch((err) => {
-  // tslint:disable-next-line: no-console
-  console.error(err);
-});
+const server = initialize().catch(logger.error);
 
 export default server;
