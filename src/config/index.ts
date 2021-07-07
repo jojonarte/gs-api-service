@@ -2,6 +2,10 @@ export interface Config {
   appName: string
   env: string
   database: {
+    // user: string,
+    // database: string,
+    // password: string,
+    // port: number,
     url: string
   }
   logging: {

@@ -1,6 +1,7 @@
 import { Server } from 'http';
 import Koa from 'koa';
-import bodyParser from 'koa-bodyparser'
+import koaBody from 'koa-body'
+import koaRespond = require('koa-respond');
 import { Model } from 'objection';
 import { config } from './config';
 import { initializeDb } from './database/init';
@@ -68,7 +69,9 @@ export default class Application {
   }
 
   private setup(): void {
-    this.app.use(bodyParser());
+    this.app.use(koaRespond())
+    this.app.use(koaBody());
+
     this.app.use(v1Routes);
 
     this.app.on('error', err => logger.error({ err }, 'Unhandled application error.'));

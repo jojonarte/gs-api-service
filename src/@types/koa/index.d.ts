@@ -1,4 +1,4 @@
-import * as _ from 'koa'
+import { BaseContext } from 'koa'
 
 declare module 'koa' {
 

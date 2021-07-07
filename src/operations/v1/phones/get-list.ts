@@ -15,16 +15,23 @@ interface PhoneOutput {
 }
 
 interface OperationOutput {
-  results: PhoneOutput[]
-  total: number
+  success: boolean,
+  data: {
+    results: PhoneOutput[]
+    total: number
+  }
 }
 
 class ListPhones extends Operation<{}, OperationOutput> {
   protected async run(): Promise<OperationOutput> {
-    const phones = await phoneRepository.findAll();
+    const phones = await phoneRepository.findAll(true);
+
     return {
-      total: phones.length,
-      results: phones
+      success: true,
+      data: {
+        total: phones.length,
+        results: phones
+      }
     }
   }
 }

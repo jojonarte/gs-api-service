@@ -13,6 +13,7 @@ export abstract class Operation<T, U> {
       logger.info(`(${this.constructor.name}) - DONE (${Date.now() - startTime} ms)`)
       return result
     } catch (err) {
+      console.log('ERRRZZ', err)
       logger.error(`(${this.constructor.name}) - ERROR ${err.type ? err.type : 'UnknownError'} (${Date.now() - startTime} ms)`)
       throw err
     }

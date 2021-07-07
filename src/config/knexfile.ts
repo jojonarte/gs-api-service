@@ -1,6 +1,6 @@
 import { Knex } from 'knex';
 import { knexSnakeCaseMappers } from 'objection';
-import { config } from 'src/config';
+import { config } from '.';
 
 const defaultOptions: Knex.Config = {
   debug: false,

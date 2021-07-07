@@ -1,5 +1,5 @@
+require('module-alias/register')
 import * as dotenv from 'dotenv';
-import 'module-alias/register';
 import Application from 'src/app';
 import { logger } from './utils/logger';
 
