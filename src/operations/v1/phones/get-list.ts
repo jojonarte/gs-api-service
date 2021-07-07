@@ -1,23 +1,12 @@
 import { Operation } from 'src/operations/operation';
 import { phoneRepository } from 'src/database/repositories/phones';
+import { Phone } from 'src/database/models/phone';
 
-interface PhoneOutput {
-  id: number;
-  name: string;
-  manufacturer: string;
-  description: string;
-  color: string;
-  price: number;
-  imageFileName: string;
-  screen: string;
-  processor: string;
-  ram: string;
-}
 
 interface OperationOutput {
   success: boolean,
   data: {
-    results: PhoneOutput[]
+    results: Partial<Phone>[]
     total: number
   }
 }

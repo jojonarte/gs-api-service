@@ -1,6 +1,12 @@
 import { removeSensitiveAttributes } from 'src/utils/helpers'
 import { logger } from 'src/utils/logger'
 
+export interface OperationOutput {
+  success: boolean;
+  message?: string;
+  data: any;
+}
+
 export abstract class Operation<T, U> {
   protected validationSchema: object
 
@@ -13,7 +19,6 @@ export abstract class Operation<T, U> {
       logger.info(`(${this.constructor.name}) - DONE (${Date.now() - startTime} ms)`)
       return result
     } catch (err) {
-      console.log('ERRRZZ', err)
       logger.error(`(${this.constructor.name}) - ERROR ${err.type ? err.type : 'UnknownError'} (${Date.now() - startTime} ms)`)
       throw err
     }

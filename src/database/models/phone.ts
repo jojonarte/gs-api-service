@@ -10,7 +10,7 @@ export class Phone extends BaseModel {
   public imageFileName: string;
   public screen: string;
   public processor: string;
-  public ram: string;
+  public ram: number;
 
   protected $transformJSON = {
     omit: ['deletedAt', 'createdAt', 'updatedAt'],

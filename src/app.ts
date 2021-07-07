@@ -5,7 +5,8 @@ import koaRespond = require('koa-respond');
 import { Model } from 'objection';
 import { config } from './config';
 import { initializeDb } from './database/init';
-import v1Routes from './routes/v1';
+import { handleErrors } from './api/middlewares/error-handling';
+import v1Routes from './api/routes/v1';
 import { logger } from './utils/logger';
 
 export default class Application {
@@ -69,6 +70,7 @@ export default class Application {
   }
 
   private setup(): void {
+    this.app.use(handleErrors);
     this.app.use(koaRespond())
     this.app.use(koaBody());
 

@@ -11,15 +11,15 @@ exports.up = async (knex: Knex) => {
   await knex.schema.createTable('phones', table => {
     createIdAndTimestamps(table);
 
-    table.string('name').notNullable().index();
+    table.string('name').notNullable().index().unique();
     table.string('manufacturer').notNullable().index();
     table.string('description').nullable();
     table.string('color').notNullable();
-    table.integer('price').notNullable().defaultTo(199);
+    table.integer('price').notNullable().unsigned().defaultTo(199);
     table.string('imageFileName').nullable();
     table.string('screen').notNullable();
     table.string('processor').notNullable();
-    table.integer('ram').notNullable().defaultTo(2);
+    table.integer('ram').notNullable().unsigned().defaultTo(2);
   })
 
 };
