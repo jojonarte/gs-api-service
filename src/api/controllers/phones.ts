@@ -6,6 +6,7 @@ import { Phone } from 'src/database/models/phone';
 import { createPhone } from 'src/operations/v1/phones/create';
 import { deletePhone } from 'src/operations/v1/phones/delete';
 import { listPhones } from 'src/operations/v1/phones/get-list';
+import { patchPhone } from 'src/operations/v1/phones/patch';
 import { InternalServerError } from 'src/utils/errors';
 
 export const getPhones = async (ctx: Context) => {
@@ -15,7 +16,7 @@ export const getPhones = async (ctx: Context) => {
 export const insertPhone = compose([
   validate({ body: schema.create }),
   async (ctx: Context) => {
-    ctx.created(await createPhone.execute(ctx.request.body as Partial<Phone>))
+    return ctx.created(await createPhone.execute(ctx.request.body as Partial<Phone>))
   }
 ])
 
@@ -28,5 +29,12 @@ export const removePhone = compose([
     } catch (error) {
       throw new InternalServerError();
     }
+  }
+])
+
+export const updatePhone = compose([
+  validate({ body: schema.patch }),
+  async (ctx: Context) => {
+    return ctx.ok(await patchPhone.execute(ctx.request.body));
   }
 ])
