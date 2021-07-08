@@ -16,6 +16,12 @@ export class ApiError extends Error {
   }
 }
 
+export class RecordNotFoundError extends ApiError {
+  public constructor(message: string, type?: string) {
+    super(type || 'E_NOT_FOUND', message, 404)
+  }
+}
+
 export class ValidationError extends ApiError {
   public constructor(type: string, message: string, errors?: Ajv.ErrorObject[]) {
     super(type, message, 422)
@@ -43,3 +49,16 @@ export class InvalidRequestQueryStringError extends ValidationError {
     super('E_INVALID_QUERY_STRING', message, errors)
   }
 }
+
+export class UnauthorizedError extends ApiError {
+  public constructor(message = 'The user was not authorized', type = 'E_UNAUTHORIZED') {
+    super(type, message, 401)
+  }
+}
+
+export class InternalServerError extends UnauthorizedError {
+  public constructor(message = 'Internal server error') {
+    super(message, 'E_INTERNAL_SERVER_ERROR')
+  }
+}
+

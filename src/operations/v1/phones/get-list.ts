@@ -6,7 +6,7 @@ import { Phone } from 'src/database/models/phone';
 interface OperationOutput {
   success: boolean,
   data: {
-    results: Partial<Phone>[]
+    phones: Partial<Phone>[]
     total: number
   }
 }
@@ -19,7 +19,7 @@ class ListPhones extends Operation<{}, OperationOutput> {
       success: true,
       data: {
         total: phones.length,
-        results: phones
+        phones: phones
       }
     }
   }

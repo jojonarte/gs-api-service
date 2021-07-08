@@ -20,11 +20,16 @@
     "baseUrl": ".",
     "typeRoots": [
       "node_modules/@types",
-      "@types"
+      "@types",
+      "src/@types"
+    ],
+    "types": [
+      "jest"
     ]
   },
   "include": [
-    "src"
+    "src",
+    "tests"
   ],
   "exclude": [
     "node_modules",

@@ -41,3 +41,11 @@ export const create = {
     'ram',
   ]
 }
+
+export const deletePhone = {
+  type: 'object',
+  properties: {
+    phoneId: { type: 'string' }
+  },
+  required: ['phoneId']
+}

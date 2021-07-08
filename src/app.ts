@@ -1,6 +1,7 @@
 import { Server } from 'http';
 import Koa from 'koa';
 import koaBody from 'koa-body'
+import kcors from 'kcors'
 import koaRespond = require('koa-respond');
 import { Model } from 'objection';
 import { config } from './config';
@@ -73,6 +74,7 @@ export default class Application {
     this.app.use(handleErrors);
     this.app.use(koaRespond())
     this.app.use(koaBody());
+    this.app.use(kcors({ origin: '*' }))
 
     this.app.use(v1Routes);
 
